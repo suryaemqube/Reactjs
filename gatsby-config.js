@@ -8,5 +8,21 @@
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
-  plugins: [],
-}
+  siteMetadata: {
+    title: `Default title`,
+    description: `Default description`,
+    image: `wp-content/themes/allaboutvat/images/favicon.png`,
+    siteUrl: `https://dubaibizbuzz.emqubeweb.com/`,
+  },
+  plugins: [
+    {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        typeName: 'WPGraphQL',
+        fieldName: 'wpgraphql',
+        url: 'https://your-wordpress-website.com/graphql', // Replace with your WPGraphQL endpoint
+      },
+    },
+  ],
+};
+
