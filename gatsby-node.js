@@ -41,11 +41,8 @@ exports.createPages = async ({ graphql, actions }) => {
     return;
   }
 
-  console.log(result.data)
-
   const { edges } = result.data.wpgraphql.insights;
 
-  console.log(edges)
   edges.forEach(({ node }) => {
     createPage({
       path: `/insights/${node.slug}`,
