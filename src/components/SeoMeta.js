@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react"
 import axios from 'axios';
-import { useSiteMetadata } from "../hooks/seo"
+// import { useSiteMetadata } from "../hooks/seo"
 import { getToken } from "../hooks/token";
-import DOMPurify from "dompurify";
+// import DOMPurify from "dompurify";
 
 const WEBSITE_URL = 'https://dubaibizbuzz.emqubeweb.com/';
 export const Seo = ({ title, description, pathname, children }) => {
@@ -10,7 +10,7 @@ export const Seo = ({ title, description, pathname, children }) => {
     const [token, setToken] = useState('');
     const [html, setHTML] = useState('');
 
-    const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
+    // const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
 
 
     // Get token
@@ -45,15 +45,15 @@ export const Seo = ({ title, description, pathname, children }) => {
             .catch(error => console.error('Error sending email:', error));
     })
 
-    const cleanHtml = DOMPurify.sanitize(html, {
-        USE_PROFILES: { html: true },
-    });
-    const seo = {
-        title: title || defaultTitle,
-        description: description || defaultDescription,
-        image: `${siteUrl}${image}`,
-        url: `${siteUrl}${pathname || ``}`,
-    }
+    // const cleanHtml = DOMPurify.sanitize(html, {
+    //     USE_PROFILES: { html: true },
+    // });
+    // const seo = {
+    //     title: title || defaultTitle,
+    //     description: description || defaultDescription,
+    //     image: `${siteUrl}${image}`,
+    //     url: `${siteUrl}${pathname || ``}`,
+    // }
 
     return (
         <>

@@ -20,6 +20,7 @@
     "formik": "^2.4.1",
     "gatsby": "^5.10.0",
     "gatsby-plugin-postcss": "^6.10.0",
+    "gatsby-plugin-sharp": "^5.10.0",
     "gatsby-plugin-styled-components": "^6.10.0",
     "gatsby-source-graphql": "^5.10.0",
     "html-react-parser": "^4.0.0",

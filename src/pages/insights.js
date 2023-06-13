@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Layout from '../components/Layout';
-import { Link } from 'react-router-dom';
+import { Link } from 'gatsby';
 
 const Insights = () => {
     const [insights, setInsights] = useState([]);
@@ -28,7 +28,7 @@ const Insights = () => {
             <div>
                 {insights.map(insight => (
                     <div key={insight.id}>
-                        <Link to={`/postdetail/${insight.slug}`}>
+                        <Link to={`/insights/${insight.slug}`}>
                             <div className='text-3xl font-bold underline'>{insight.title.rendered} {'-'} {insight.acf.insights_tags}
                             </div>
                             <img src={insight.better_featured_image.source_url} alt={insight.better_featured_image.alt_text} />

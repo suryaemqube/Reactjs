@@ -1,37 +1,58 @@
-const axios = require('axios');
-const path = require('path');
+// gatsby-node.js
+const path = require(`path`)
 
-exports.createPages = async ({ page, actions }) => {
+exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
-  // Fetch data from the WordPress API
-  const response = await axios.get('https://dubaibizbuzz.emqubeweb.com/wp-json/wp/v2/insights');
-  const insights = response.data;
+  const result = await graphql(`
+   query {
+  wpgraphql {
+    insights {
+      edges {
+        node {
+          id
+          slug
+          title
+          excerpt
+          link
+          featuredImage {
+            node {
+              mediaItemUrl
+            }
+          }
+          digital {
+          insightsDigitally {
+            digitallyDescription
+            digitallyName
+            digitallyImage {
+              mediaItemUrl
+            }
+          }
+        }
+        }
+      }
+    }
+  }
+}
+  `);
 
-  // Create a page for each insight post
-  insights.forEach((insight) => {
+  if (result.errors) {
+    console.error('Error retrieving WordPress data:', result.errors);
+    return;
+  }
+
+  console.log(result.data)
+
+  const { edges } = result.data.wpgraphql.insights;
+
+  console.log(edges)
+  edges.forEach(({ node }) => {
     createPage({
-      path: `/posts/${insight.slug}`,
-      component: require.resolve('./src/templates/postdetail.js'),
+      path: `/insights/${node.slug}`,
+      component: path.resolve('./src/templates/CustomPostDetail.js'),
       context: {
-        slug: insight.slug,
+        post: node,
       },
     });
   });
-
-
-  if (page.path.match(/^\/contact\/?$/)) {
-    page.matchPath = '/contact/*';
-    createPage(page);
-    createPage({
-      ...page,
-      path: '/thankyou',
-      context: {
-        ...page.context,
-        originalPath: page.path,
-      },
-    });
-  }
-
 };
-

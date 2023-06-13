@@ -16,13 +16,23 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-graphql',
+      resolve: `gatsby-source-graphql`,
       options: {
-        typeName: 'WPGraphQL',
+        typeName: 'wpgraphql',
         fieldName: 'wpgraphql',
-        url: 'https://your-wordpress-website.com/graphql', // Replace with your WPGraphQL endpoint
+        url: `https://dubaibizbuzz.emqubeweb.com/graphql`,
       },
     },
   ],
+  // plugins: [
+  //   {
+  //     resolve: 'gatsby-source-graphql',
+  //     options: {
+  //       typeName: 'WPGraphQL',
+  //       fieldName: 'wpgraphql',
+  //       url: 'https://dubaibizbuzz.emqubeweb.com/graphql',
+  //     },
+  //   },
+  // ],
 };
 
